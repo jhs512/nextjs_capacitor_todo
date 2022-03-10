@@ -24,7 +24,9 @@
     "moment": "^2.29.1",
     "next": "latest",
     "react": "latest",
-    "react-dom": "latest"
+    "react-dom": "latest",
+    "recoil": "^0.6.1",
+    "recoil-persist": "^4.0.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.2",

@@ -1,13 +1,40 @@
-import { MobileDateTimePicker } from "@mui/lab";
+import { MobileDatePicker } from "@mui/lab";
 
-import { AppBar, TextField, Toolbar } from "@mui/material";
+import { AppBar, TextField, Toolbar, Button } from "@mui/material";
 import Head from "next/head";
-import Link from "../src/Link";
 import ToolbarContent from "../components/ToolbarContent";
-import { useState } from "react";
+import {
+  TodoWrite__performDateInputValueAtom,
+  TodoWrite__bodyInputValueAtom,
+} from "../states";
+import { useRecoilState } from "recoil";
+import { useTodosState } from "../hooks";
+import { momentToFormat2 } from "../utils";
 
 export default function Write() {
-  const [value, setValue] = useState("");
+  const { writeTodo } = useTodosState();
+
+  const [performDateInputValue, setPerformDateInputValue] = useRecoilState(
+    TodoWrite__performDateInputValueAtom
+  );
+
+  const [bodyInputValue, setBodyInputValue] = useRecoilState(
+    TodoWrite__bodyInputValueAtom
+  );
+
+  const submit = () => {
+    if (performDateInputValue.trim().length == 0) {
+      alert("언제 해야하는 일인지 날짜를 적어주세요.");
+      return;
+    }
+
+    if (bodyInputValue.trim().length == 0) {
+      alert("할일 내용을 입력해주세요.");
+      return;
+    }
+
+    writeTodo(performDateInputValue.trim(), bodyInputValue.trim());
+  };
 
   return (
     <>
@@ -22,12 +49,12 @@ export default function Write() {
       </AppBar>
       <Toolbar />
 
-      <div className="flex-1 flex flex-col p-10">
-        <MobileDateTimePicker
-          value={value}
-          onChange={(newValue) => {
-            setValue(newValue);
-          }}
+      <div className="flex-1 flex flex-col gap-6 p-6">
+        <MobileDatePicker
+          value={performDateInputValue}
+          onChange={(newValue) =>
+            setPerformDateInputValue(momentToFormat2(newValue))
+          }
           label="언제 해야하나요?"
           inputFormat={"yyyy-MM-DD"}
           mask={"____-__-__"}
@@ -40,7 +67,14 @@ export default function Write() {
           label="할일"
           placeholder="할일"
           multiline
+          value={bodyInputValue}
+          onChange={({ target: { value } }) => setBodyInputValue(value)}
         />
+        <Button variant="contained" onClick={submit}>
+          <span>할일추가</span>
+          <span>&nbsp;</span>
+          <i className="fa-solid fa-marker"></i>
+        </Button>
       </div>
     </>
   );

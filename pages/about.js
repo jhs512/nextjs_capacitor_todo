@@ -2,7 +2,7 @@ import { AppBar, Toolbar } from "@mui/material";
 import Head from "next/head";
 import ToolbarContent from "../components/ToolbarContent";
 
-export default function About() {
+export default function TodoList() {
   return (
     <>
       <Head>

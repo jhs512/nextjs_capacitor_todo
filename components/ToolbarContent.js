@@ -23,7 +23,7 @@ export default function ToolbarContent() {
           color="inherit"
           component={Link}
           noLinkStyle
-          href="/"
+          href="/write"
           className="font-bold"
           size="small"
         >

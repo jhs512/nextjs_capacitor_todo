@@ -8,6 +8,8 @@
   font-family: "GmarketSansMedium";
   src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff")
     format("woff");
+  line-height: 1.5;
+  text-underline-position: under;
   font-weight: normal;
   font-style: normal;
 }
