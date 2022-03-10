@@ -12,20 +12,30 @@ export function useTodosState() {
 
     const regDate = dateObjToFormat1(new Date());
     const updateDate = regDate;
+    const completed = false;
 
     const todo = {
       id,
       performDate,
       regDate,
       updateDate,
+      completed,
       body,
     };
 
     setTodos([...todos, todo]);
   };
 
+  const setCompleted = (id, completed) => {
+    const newTodos = todos.map((todo) =>
+      todo.id != id ? todo : { ...todo, completed: completed }
+    );
+    setTodos(newTodos);
+  };
+
   return {
     writeTodo,
     todos,
+    setCompleted,
   };
 }

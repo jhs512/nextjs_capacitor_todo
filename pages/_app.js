@@ -10,6 +10,7 @@ import { RecoilRoot } from "recoil";
 
 import createEmotionCache from "../src/createEmotionCache";
 import theme from "../src/theme";
+import { useSsrComplectedState } from "../states";
 import "../styles/globals.css";
 
 // Client-side cache, shared for the whole session of the user in the browser.
@@ -30,7 +31,9 @@ export default function MyApp(props) {
         <CssBaseline />
         <LocalizationProvider dateAdapter={DateAdapter}>
           <RecoilRoot>
-            <Component {...pageProps} />
+            <MyAppInner>
+              <Component {...pageProps} />
+            </MyAppInner>
           </RecoilRoot>
         </LocalizationProvider>
       </ThemeProvider>
@@ -43,3 +46,10 @@ MyApp.propTypes = {
   emotionCache: PropTypes.object,
   pageProps: PropTypes.object.isRequired,
 };
+
+function MyAppInner({ children }) {
+  const setSsrCompleted = useSsrComplectedState();
+  React.useEffect(setSsrCompleted, [setSsrCompleted]);
+
+  return children;
+}

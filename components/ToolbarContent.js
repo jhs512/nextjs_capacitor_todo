@@ -4,7 +4,11 @@ import Link from "../src/Link";
 export default function ToolbarContent() {
   return (
     <div className="w-full flex">
-      <div className="flex-1"></div>
+      <div className="flex-1 flex">
+        <IconButton variant="text" color="inherit" size="small">
+          <i class="fa-solid fa-bars"></i>
+        </IconButton>
+      </div>
 
       <Button
         variant="text"
@@ -24,7 +28,6 @@ export default function ToolbarContent() {
           component={Link}
           noLinkStyle
           href="/write"
-          className="font-bold"
           size="small"
         >
           <i className="fa-solid fa-pen"></i>
