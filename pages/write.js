@@ -59,6 +59,9 @@ export default function Write() {
           inputFormat={"yyyy-MM-DD"}
           mask={"____-__-__"}
           renderInput={(params) => <TextField {...params} />}
+          toolbarFormat="yyyy년 MM월"
+          okText="확인"
+          cancelText="취소"
         />
         <TextField
           className="flex-1 flex flex-col"

@@ -98,3 +98,16 @@ html > body,
   display: flex;
   flex-direction: column;
 }
+
+.MuiCalendarPicker-root
+  [role="presentation"]
+  .PrivatePickersFadeTransitionGroup-root:nth-child(2) {
+  order: -1;
+}
+
+.MuiCalendarPicker-root
+  [role="presentation"]
+  .PrivatePickersFadeTransitionGroup-root:nth-child(2)
+  > ::after {
+  content: "년";
+}
