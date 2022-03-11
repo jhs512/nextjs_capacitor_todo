@@ -56,14 +56,16 @@ export default function Home() {
                       className="pl-6 min-h-[60px] flex items-center"
                       onClick={() => setCompleted(todo.id, !todo.completed)}
                     >
-                      <span
-                        className={
-                          "text-[#dcdcdc] text-4xl" +
-                          (todo.completed ? " text-[#ff8686]" : "")
-                        }
-                      >
-                        <i className="fa-solid fa-check"></i>
-                      </span>
+                      <IconButton variant="text" color="inherit">
+                        <span
+                          className={
+                            "text-[#dcdcdc] text-4xl" +
+                            (todo.completed ? " text-[#ff8686]" : "")
+                          }
+                        >
+                          <i className="fa-solid fa-check"></i>
+                        </span>
+                      </IconButton>
                     </div>
                     <div className="w-[3px] rounded-[1px] self-stretch bg-[#dcdcdc]"></div>
                     <div className="flex flex-col justify-center flex-1">
