@@ -1,12 +1,13 @@
 import { CacheProvider } from "@emotion/react";
 import DateAdapter from "@mui/lab/AdapterMoment";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
+import { Snackbar } from "@mui/material";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material/styles";
 import Head from "next/head";
 import PropTypes from "prop-types";
 import * as React from "react";
-import { RecoilRoot } from "recoil";
+import { RecoilRoot, useRecoilState } from "recoil";
 
 import createEmotionCache from "../src/createEmotionCache";
 import theme from "../src/theme";
@@ -76,7 +77,19 @@ MyApp.propTypes = {
 
 function MyAppInner({ children }) {
   const setSsrCompleted = useSsrComplectedState();
-  React.useEffect(setSsrCompleted, [setSsrCompleted]);
+  React.useEffect(setSsrCompleted, []);
 
-  return children;
+  const [snackbarOpen, setSnackbarOpen] = useRecoilState(false);
+
+  return (
+    <>
+      <Snackbar
+        open={snackbarOpen}
+        onClose={() => setSnackbarOpen(false)}
+        autoHideDuration={6000}
+        message="Note archived"
+      />
+      {children}
+    </>
+  );
 }

@@ -34,7 +34,7 @@ export const useSsrComplectedState = () => {
 
 export const TodoWrite__performDateInputValueAtom = atom({
   key: "app/TodoWrite__performDateInputValueAtom",
-  default: "",
+  default: null,
   effects_UNSTABLE: [persistAtomCommonEffect],
 });
 

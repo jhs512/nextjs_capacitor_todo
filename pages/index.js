@@ -1,11 +1,23 @@
-import { AppBar, Button, Toolbar, Chip, IconButton } from "@mui/material";
+import {
+  AppBar,
+  Button,
+  Toolbar,
+  Chip,
+  IconButton,
+  Drawer,
+} from "@mui/material";
 import Head from "next/head";
+import { useState } from "react";
 import ToolbarContent from "../components/ToolbarContent";
 import { useTodosState } from "../hooks";
 import Link from "../src/Link";
 
 export default function Home() {
   const { todos, setCompleted } = useTodosState();
+
+  const anchor = "bottom";
+
+  const [bottomDrawerOpen, setBottomDrawerOpen] = useState(false);
 
   return (
     <>
@@ -19,6 +31,14 @@ export default function Home() {
         </Toolbar>
       </AppBar>
       <Toolbar />
+
+      <Drawer
+        anchor={anchor}
+        open={bottomDrawerOpen}
+        onClose={() => setBottomDrawerOpen(false)}
+      >
+        하이
+      </Drawer>
 
       {todos.length == 0 && (
         <div className="flex-1 flex justify-center items-center bg-[#F0F0F0]">
@@ -77,9 +97,9 @@ export default function Home() {
                       <IconButton
                         variant="text"
                         color="inherit"
-                        noLinkStyle
                         size="small"
-                        className="text-[#dcdcdc]"
+                        className="text-[#dcdcdc] bg-red-500 py-4 px-4"
+                        onClick={() => setBottomDrawerOpen(true)}
                       >
                         <i className="fa-solid fa-ellipsis-vertical"></i>
                       </IconButton>
